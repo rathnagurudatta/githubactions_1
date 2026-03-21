@@ -7,21 +7,44 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Job details
-              run: echo "Build_Job1"
+              run: |
+               echo "Build_Job1"
+               sudo apt-get install cowsay -y 
+               cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+
+            - name: upload dragon text file
+              uses: actions/upload-artifact@v4
+              with: 
+                name: dragon-text-file
+                path: dragon.txt
 
     test_job2:
         needs : build_job1
         runs-on: ubuntu-latest
         steps:
+            - name: download dragon text file
+              uses: actions/download-artifact@v8
+              with: 
+                name: dragon-text-file
+
             - name: Job details
-              run: echo "Test_Job2"
+              run: |
+               echo "Test_Job2"
+               grep -i "dragon" dragon.txt
 
     deploy_job3:
         needs : test_job2
         runs-on: ubuntu-latest
         steps:
+            - name: download dragon text file
+              uses: actions/download-artifact@v8
+              with: 
+                name: dragon-text-file
+                
             - name: Job details
-              run: echo "Deploy_Job3"
+              run: |
+                echo "Deploy_Job3"
+                cat dragon.txt
                
 
 
