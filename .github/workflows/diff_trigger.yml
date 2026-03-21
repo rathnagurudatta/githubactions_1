@@ -1,4 +1,4 @@
-name: Exploring variables and Secrets
+name: Different Triggers for Github Actions
 
 on: 
   schedule:
