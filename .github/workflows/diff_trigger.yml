@@ -2,7 +2,7 @@ name: Exploring variables and Secrets
 
 on: 
   schedule:
-    - cron: "*/1 * * * * "# runs every day at midnight
+    - cron: "*/1 * * * *"
 
 
   
