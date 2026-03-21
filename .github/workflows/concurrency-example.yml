@@ -1,4 +1,4 @@
-name: concurrency example
+name: concurrency and timeout example
 
 on: 
   # schedule:
@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Docker Run
+      timeout-minutes: 3 #this steps should get completed within 3 minutes, otherwise it will throw timeout error
       run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/${{vars.DOCKER_USERNAME}}/$IMAGE_NAME:latest
 
 
