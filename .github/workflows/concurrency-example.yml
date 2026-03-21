@@ -1,4 +1,4 @@
-name: Different Triggers for Github Actions
+name: concurrency example
 
 on: 
   # schedule:
